@@ -32,10 +32,12 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 		     &mac[0], &mac[1], &mac[2], &mac[3], &mac[4], &mac[5]);
 
 	// Create a MagicPacket message
-	char msg[6 + 6*17];
+	char msg[6 + 6*16 + 1];
 	char *ptr = msg;
 
-	for(int i = 0; i < 6; i++) *ptr++ = (byte)0xff;
+	memset(msg, 0x00, sizeof(msg));
+
+	for(int i = 0; i < 6; i++) *ptr++ = (char)0xff;
 
 	for(int i = 0; i < 16; i++)
 	{
